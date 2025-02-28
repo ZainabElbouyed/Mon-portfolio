@@ -1,5 +1,5 @@
 .header {
-  background: #151515 url("intro-bg.jpg") no-repeat center center;
+  background: #151515 url("images/intro-bg.jpg") no-repeat center center;
   background-size: cover;
   background-attachment: fixed;
 }
@@ -71,7 +71,7 @@ body {
 }
 
 .services {
-  background: url("bg.jpg") no-repeat center center;
+  background: url("images/bg.jpg") no-repeat center center;
   background-size: cover;
   background-attachment: fixed;
 }
