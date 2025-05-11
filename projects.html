@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>EL BOUYED Zainab</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" />
+  <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
+  <link rel="stylesheet" href="css/font-awesome.css" />
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+
+<body>
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg sticky-top navbar-dark navbar-blur">
+    <div class="container">
+      <a class="navbar-brand d-flex align-items-center" href="index.html">
+        <img src="images/Logo.PNG" alt="Logo" width="70" height="70" class="me-2">
+        <span>My Portfolio</span>
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item"><a class="nav-link" href="about.html">About Me</a></li>
+          <li class="nav-item"><a class="nav-link" href="education.html">Education</a></li>
+          <li class="nav-item"><a class="nav-link" href="skills.html">Skills</a></li>
+          <li class="nav-item"><a class="nav-link" href="projects.html">Projects</a></li>
+          <li class="nav-item"><a class="nav-link" href="download.html">Download CV</a></li>
+          <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  <section id="projects" class="my-5">
+    <div class="text-center mb-5" data-aos="zoom-in">
+      <h4 class="section-title">My Projects</h4>
+      <hr class="section-line" />
+      <h2 class="section-subtitle">Explore a variety of projects I've worked on, including web development, IoT systems, and AI-powered applications.</h2>
+    </div>
+      <div class="text-center mb-4" data-aos="zoom-in">
+        <button class="btn btn-outline-primary filter-button" data-filter="all">All</button>
+        <button class="btn btn-outline-primary filter-button" data-filter="web">Web Development</button>
+        <button class="btn btn-outline-primary filter-button" data-filter="iot">IoT</button>
+        <button class="btn btn-outline-primary filter-button" data-filter="web-iot-ia">Web Development & IoT & IA</button>
+        <button class="btn btn-outline-primary filter-button" data-filter="web-iot">Web Development & IoT </button>
+      </div>
+      
+      <div class="row" id="project-list">
+        <!-- Project 1 - Web Development -->
+        <div class="col-md-6 col-lg-4 filter-item iot mb-4" data-aos="fade-up" data-aos-delay="100">
+            <div class="card h-100 bg-dark text-white shadow">
+              <img src="images/Capture d'écran 2025-05-09 204150.png" class="card-img-top" alt="Project Image">
+              <div class="card-body d-flex flex-column">
+                <h5 class="card-title text-info">Aerodynamic Optimization: The Rear Wing as a Key to Performance in Motorsport.</h5>
+                <div class="mt-auto">
+                  <button class="btn btn-outline-info w-100 mb-2" data-bs-toggle="collapse" data-bs-target="#desc1">
+                    Description
+                  </button>
+                  <div class="collapse fade-slide" id="desc1">
+                    <p class="card-text">This project focuses on optimizing the aerodynamic performance of racing cars through an IoT-based system that dynamically adjusts the rear wing's angle. Using real-time data from sensors monitoring speed, acceleration, and steering angle, the system automatically modifies the wing’s angle to enhance downforce during cornering and reduce drag on straightaways. The result is improved vehicle handling and performance on the track, with the system offering a smart, efficient solution to aerodynamic challenges in motorsport.</p>
+                  </div>
+                  <button class="btn btn-outline-warning w-100" data-bs-toggle="collapse" data-bs-target="#tech1">
+                    Technologies Used
+                  </button>
+                  <div class="collapse fade-slide" id="tech1">
+                    <p class="card-text mt-2">Arduino UNO, Potentiometer, Servo Motor. </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+        
+        <!-- Project 2 - IoT -->
+        <div class="col-md-6 col-lg-4 filter-item web-iot-ia mb-4" data-aos="fade-up" data-aos-delay="200">
+            <div class="card h-100 bg-dark text-white shadow">
+              <img src="images/airsense.PNG" class="card-img-top" alt="Project Image">
+              <div class="card-body d-flex flex-column">
+                <h5 class="card-title text-info">AirSense: Intelligent Air Quality Monitoring in School Environments.</h5>
+                <div class="mt-auto">
+                  <button class="btn btn-outline-info w-100 mb-2" data-bs-toggle="collapse" data-bs-target="#desc2">
+                    Description
+                  </button>
+                  <div class="collapse fade-slide" id="desc2">
+                    <p class="card-text">AirSense is an intelligent solution that uses AI, IoT, and energy-efficient sensors to monitor air quality in schools. Connected sensors continuously track CO₂, temperature, and humidity levels in real-time, while also minimizing energy consumption. The system analyzes the data to detect anomalies and generate alerts for harmful pollution levels. A mobile app allows users to monitor air quality and receive real-time alerts. It dynamically adjusts ventilation to optimize energy use, reduces the school's carbon footprint, and promotes environmental awareness among students.</p>
+                  </div>
+                  <button class="btn btn-outline-warning w-100" data-bs-toggle="collapse" data-bs-target="#tech2">
+                    Technologies Used
+                  </button>
+                  <div class="collapse fade-slide" id="tech2">
+                    <p class="card-text mt-2">Raspberry Pi, Arduino UNO, Temperature and Humidity Sensor, CO₂ Sensor, Express.js, Next.js, Python, HTML, JavaScript, CSS, Bootstrap.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+        
+        <!-- Project 3 - AI -->
+        <div class="col-md-6 col-lg-4 filter-item web-iot-ia mb-4" data-aos="fade-up" data-aos-delay="300">
+            <div class="card h-100 bg-dark text-white shadow">
+              <img src="images/Easycrowd.PNG" class="card-img-top" alt="Project Image">
+              <div class="card-body d-flex flex-column">
+                <h5 class="card-title text-info">EasyCrowd: Intelligent Crowd Management System.</h5>
+                <div class="mt-auto">
+                  <button class="btn btn-outline-info w-100 mb-2" data-bs-toggle="collapse" data-bs-target="#desc3">
+                    Description
+                  </button>
+                  <div class="collapse fade-slide" id="desc3">
+                    <p class="card-text">EasyCrowd is transforming crowd management for the 2030 World Cup by leveraging AI, geolocation, and IoT technologies. Using smart sensors, the system monitors real-time movement, detects overcrowded zones, and anticipates potential risks. An intelligent algorithm generates personalized routes and sends automatic alerts to both visitors and organizers, ensuring smooth circulation, optimal coordination, and a safe, seamless experience for spectators and staff. The solution reduces congestion through predictive routing, enables real-time monitoring with IoT and heat maps, and facilitates fluid evacuations through smart guidance.</p>
+                  </div>
+                  <button class="btn btn-outline-warning w-100" data-bs-toggle="collapse" data-bs-target="#tech3">
+                    Technologies Used
+                  </button>
+                  <div class="collapse fade-slide" id="tech3">
+                    <p class="card-text mt-2">AI cameras, IR sensors, Pressure sensors, Geolocation technologies, Python, Express.js (Node.js), React.js (JavaScript, HTML, CSS), MongoDB. </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <div class="col-md-6 col-lg-4 filter-item web-iot mb-4" data-aos="fade-up" data-aos-delay="400">
+            <div class="card h-100 bg-dark text-white shadow">
+              <img src="images/Capture d'écran 2025-05-10 195337.png" class="card-img-top" alt="Project Image">
+              <div class="card-body d-flex flex-column">
+                <h5 class="card-title text-info">GreenTech SmartBin : A Connected Solution for Sustainable Waste Management.</h5>
+                <div class="mt-auto">
+                  <button class="btn btn-outline-info w-100 mb-2" data-bs-toggle="collapse" data-bs-target="#desc4">
+                    Description
+                  </button>
+                  <div class="collapse fade-slide" id="desc4">
+                    <p class="card-text">SmartBin is an innovative IoT-based waste management system that uses sensors and real-time connectivity to monitor fill levels, detect presence, and automate bin operations. A dedicated mobile and web app provides live monitoring, sends alerts, and uses smart algorithms to optimize collection routes and scheduling.</p>
+                  </div>
+                  <button class="btn btn-outline-warning w-100" data-bs-toggle="collapse" data-bs-target="#tech4">
+                    Technologies Used
+                  </button>
+                  <div class="collapse fade-slide" id="tech4">
+                    <p class="card-text mt-2">ESP32, Ultrasonic Sensor, Servo Motor, HTML, CSS, JavaScript </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+    
+          <div class="col-md-6 col-lg-4 filter-item web mb-4" data-aos="fade-up" data-aos-delay="400">
+            <div class="card h-100 bg-dark text-white shadow">
+              <img src="images/Capture d'écran 2025-05-10 223416.png" class="card-img-top" alt="Project Image">
+              <div class="card-body d-flex flex-column">
+                <h5 class="card-title text-info">My Portfolio.</h5>
+                <div class="mt-auto">
+                  <button class="btn btn-outline-info w-100 mb-2" data-bs-toggle="collapse" data-bs-target="#desc5">
+                    Description
+                  </button>
+                  <div class="collapse fade-slide" id="desc5">
+                    <p class="card-text">This project is my personal portfolio website designed to showcase my skills, experience, and the work I have done. It serves as a digital representation of my professional journey, providing visitors with an overview of my capabilities and achievements. The website is fully responsive, ensuring a seamless experience on both desktop and mobile devices.</p>
+                  </div>
+                  <button class="btn btn-outline-warning w-100" data-bs-toggle="collapse" data-bs-target="#tech5">
+                    Technologies Used
+                  </button>
+                  <div class="collapse fade-slide" id="tech5">
+                    <p class="card-text mt-2">HTML, CSS, JavaScript, Bootstrap </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+    
+  </section>
+
+  <!-- Include Bootstrap JS and AOS Animation JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  
+  <!-- Initialize AOS -->
+  <script>
+    AOS.init({ once: true });
+  </script>
+  <script>
+  // Appliquer la classe 'show' pour déclencher l'animation personnalisée
+  document.querySelectorAll('.collapse').forEach((el) => {
+    el.addEventListener('show.bs.collapse', () => {
+      el.classList.add('show');
+    });
+    el.addEventListener('hide.bs.collapse', () => {
+      el.classList.remove('show');
+    });
+  });
+</script>
+
+  <script>
+  const filterButtons = document.querySelectorAll('.filter-button');
+  const projectItems = document.querySelectorAll('.filter-item');
+
+  filterButtons.forEach(button => {
+    button.addEventListener('click', () => {
+      const filter = button.getAttribute('data-filter');
+
+      projectItems.forEach(item => {
+        if (filter === 'all' || item.classList.contains(filter)) {
+          item.style.display = 'block';
+        } else {
+          item.style.display = 'none';
+        }
+      });
+
+      // Optionnel : ajouter une classe active pour le bouton sélectionné
+      filterButtons.forEach(btn => btn.classList.remove('active'));
+      button.classList.add('active');
+    });
+  });
+</script>
+
+<div class="custom-cursor"></div>
+<script src="js/cursor.js"></script>
+</body>
+</html>

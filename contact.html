@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>EL BOUYED Zainab</title>
+
+  <!-- Bootstrap & AOS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" />
+  <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
+
+  <link rel="stylesheet" href="css/font-awesome.css" />
+  <link rel="stylesheet" href="css/styles.css">
+  
+</head>
+
+<body>
+
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg sticky-top navbar-dark navbar-blur">
+    <div class="container">
+      <a class="navbar-brand d-flex align-items-center" href="index.html">
+        <img src="images/Logo.PNG" alt="Logo" width="70" height="70" class="me-2">
+        <span>My Portfolio</span>
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item"><a class="nav-link" href="about.html">About Me</a></li>
+          <li class="nav-item"><a class="nav-link" href="education.html">Education</a></li>
+          <li class="nav-item"><a class="nav-link" href="skills.html">Skills</a></li>
+          <li class="nav-item"><a class="nav-link" href="projects.html">Projects</a></li>
+          <li class="nav-item"><a class="nav-link" href="download.html">Download CV</a></li>
+          <li class="nav-item"><a class="nav-link active" href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Contact Section -->
+  <section id="download" class="about-modern-section" data-aos="fade-up">
+    <div class="container text-center">
+      <div class="mb-5" data-aos="zoom-in">
+      <!-- Bouton type lien stylisé -->
+      <a href="about.html" class="btn custom-link-btn position-absolute top-0 end-0 m-3" aria-label="More About Me">
+        <i class="fas fa-chevron-right"></i>
+      </a>
+
+      <h4 class="section-title">Contact Me</h4>
+      <hr class="section-line" />
+      <h2 class="section-subtitle">Feel free to reach out if you have any questions or comments!</h2>
+      </div>
+      <div class="row justify-content-center mt-5">
+        <div class="col-md-6 text-start">
+          <form id="contactForm">
+            <div class="mb-3">
+              <label for="name" class="form-label">Name</label>
+              <input type="text" class="form-control" id="name" name="name" required placeholder="Enter your name">
+            </div>
+            <div class="mb-3">
+              <label for="email" class="form-label">Email</label>
+              <input type="email" class="form-control" id="email" name="email" required placeholder="example@email.com">
+            </div>
+            <div class="mb-3">
+              <label for="message" class="form-label">Message</label>
+              <textarea class="form-control" id="message" name="message" rows="4" required placeholder="Type your message here"></textarea>
+            </div>
+            <div class="text-end">
+                <button type="submit" class="btn btn-about">Send Message</button>
+              </div>
+            <div id="formResponse" class="mt-3"></div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section id="fun-section" class="text-center mt-5">
+    <p>Thank you for reaching out! I'm always happy to connect.</p>
+
+  </section>
+  
+  <!-- Scripts -->
+  <script>
+    document.getElementById('contactForm').addEventListener('submit', function(event) {
+  event.preventDefault(); // Empêche l'envoi du formulaire
+
+  const name = document.getElementById('name').value.trim();
+  const email = document.getElementById('email').value.trim();
+  const message = document.getElementById('message').value.trim();
+  const response = document.getElementById('formResponse'); // Ajoutez l'élément de réponse
+
+  // Réinitialiser les erreurs précédentes
+  response.style.display = 'none';
+
+  // Vérifiez si tous les champs sont remplis
+  if (name && email && message) {
+    response.style.display = 'block';
+    response.style.color = 'lightgreen';
+    response.textContent = 'Your message has been sent successfully!';
+
+    // Réinitialisation des champs après soumission
+    document.getElementById('contactForm').reset();
+  } else {
+    response.style.display = 'block';
+    response.style.color = 'red';
+    response.textContent = 'Please fill in all fields.';
+  }
+});
+
+  </script>
+
+  <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+  <script>AOS.init({ once: true });</script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+<div class="custom-cursor"></div>
+<script src="js/cursor.js"></script>
+</body>
+
+</html>
