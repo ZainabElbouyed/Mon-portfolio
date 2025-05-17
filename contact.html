@@ -21,7 +21,7 @@
   <nav class="navbar navbar-expand-lg sticky-top navbar-dark navbar-blur">
     <div class="container">
       <a class="navbar-brand d-flex align-items-center" href="index.html">
-        <img src="images/Logo.png" alt="Logo" width="70" height="70" class="me-2">
+        <img src="images/Logo.PNG" alt="Logo" width="70" height="70" class="me-2">
         <span>My Portfolio</span>
       </a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
@@ -55,7 +55,7 @@
       </div>
       <div class="row justify-content-center mt-5">
         <div class="col-md-6 text-start">
-          <form id="contactForm">
+          <form id="contactForm" action="https://formspree.io/f/myzwonpg" method="POST">
             <div class="mb-3">
               <label for="name" class="form-label">Name</label>
               <input type="text" class="form-control" id="name" name="name" required placeholder="Enter your name">
@@ -84,31 +84,36 @@
   
   <!-- Scripts -->
   <script>
-    document.getElementById('contactForm').addEventListener('submit', function(event) {
-  event.preventDefault(); // Empêche l'envoi du formulaire
-
-  const name = document.getElementById('name').value.trim();
-  const email = document.getElementById('email').value.trim();
-  const message = document.getElementById('message').value.trim();
-  const response = document.getElementById('formResponse'); // Ajoutez l'élément de réponse
-
-  // Réinitialiser les erreurs précédentes
-  response.style.display = 'none';
-
-  // Vérifiez si tous les champs sont remplis
-  if (name && email && message) {
-    response.style.display = 'block';
-    response.style.color = 'lightgreen';
-    response.textContent = 'Your message has been sent successfully!';
-
-    // Réinitialisation des champs après soumission
-    document.getElementById('contactForm').reset();
-  } else {
-    response.style.display = 'block';
-    response.style.color = 'red';
-    response.textContent = 'Please fill in all fields.';
+    var form = document.getElementById("contactForm");
+  
+  async function handleSubmit(event) {
+    event.preventDefault();
+    var status = document.getElementById("formResponse");
+    var data = new FormData(event.target);
+    fetch(event.target.action, {
+      method: form.method,
+      body: data,
+      headers: {
+          'Accept': 'application/json'
+      }
+    }).then(response => {
+      if (response.ok) {
+        status.innerHTML = "Thanks for your submission!";
+        form.reset()
+      } else {
+        response.json().then(data => {
+          if (Object.hasOwn(data, 'errors')) {
+            status.innerHTML = data["errors"].map(error => error["message"]).join(", ")
+          } else {
+            status.innerHTML = "Oops! There was a problem submitting your form"
+          }
+        })
+      }
+    }).catch(error => {
+      status.innerHTML = "Oops! There was a problem submitting your form"
+    });
   }
-});
+  form.addEventListener("submit", handleSubmit)
 
   </script>
 
