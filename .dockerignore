@@ -1,0 +1,7 @@
+.git
+*.md
+terraform/
+ansible/
+k8s/
+monitoring/
+Jenkinsfile
