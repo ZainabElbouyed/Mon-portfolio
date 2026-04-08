@@ -3,7 +3,7 @@ pipeline {
 
     environment {
         IMAGE = "zainab0405/zainab-portfolio"
-        EC2_IP = "35.180.254.156"
+        EC2_IP = "35.181.48.209"
     }
 
     stages {
