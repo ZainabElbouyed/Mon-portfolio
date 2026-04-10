@@ -2,8 +2,9 @@ pipeline {
     agent any
 
     environment {
-        IMAGE = "zainab0405/zainab-portfolio"
-        EC2_IP = "35.181.48.209"
+        IMAGE           = "zainab0405/zainab-portfolio"
+        S3_BUCKET       = "zainab-portfolio-2025"
+        CF_DISTRIBUTION = "E18UQLERRVG4XM"
     }
 
     stages {
@@ -27,19 +28,36 @@ pipeline {
             }
         }
 
-        stage('Deploy to EC2') {
+        stage('Deploy to S3') {
             steps {
-                withCredentials([sshUserPrivateKey(
-                    credentialsId: 'ec2-ssh-key',
-                    keyFileVariable: 'SSH_KEY'
-                )]) {
+                withCredentials([[
+                    $class: 'AmazonWebServicesCredentialsBinding',
+                    credentialsId: 'aws-creds'
+                ]]) {
                     sh """
-                        ssh -o StrictHostKeyChecking=no -i $SSH_KEY ubuntu@${EC2_IP} '
-                            docker pull ${IMAGE}:latest &&
-                            docker stop portfolio || true &&
-                            docker rm portfolio || true &&
-                            docker run -d --name portfolio -p 80:80 --restart always ${IMAGE}:latest
-                        '
+                        aws s3 sync . s3://${S3_BUCKET} \
+                          --delete \
+                          --exclude '.git/*' \
+                          --exclude 'terraform/*' \
+                          --exclude 'monitoring/*' \
+                          --exclude 'Jenkinsfile' \
+                          --exclude 'Dockerfile' \
+                          --region us-east-1
+                    """
+                }
+            }
+        }
+
+        stage('Invalidate CloudFront') {
+            steps {
+                withCredentials([[
+                    $class: 'AmazonWebServicesCredentialsBinding',
+                    credentialsId: 'aws-creds'
+                ]]) {
+                    sh """
+                        aws cloudfront create-invalidation \
+                          --distribution-id ${CF_DISTRIBUTION} \
+                          --paths '/*'
                     """
                 }
             }
@@ -47,7 +65,7 @@ pipeline {
     }
 
     post {
-        success { echo '✅ Déploiement réussi !' }
+        success { echo '✅ Déployé sur CloudFront !' }
         failure { echo '❌ Échec du pipeline' }
     }
 }

@@ -3,4 +3,9 @@ aws/
 terraform/.terraform/
 terraform/terraform.tfstate
 terraform/terraform.tfstate.backup
-ansible/inventory.ini
+
+minikube-linux-amd64
+ngrok
+ngrok-v3-stable-linux-amd64.tgz
+cloudflared.log
+*.log

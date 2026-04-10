@@ -8,59 +8,89 @@ terraform {
 }
 
 provider "aws" {
-  region = "eu-west-3"
+  region = "us-east-1"
 }
 
-# Importer ta clé SSH dans AWS
-resource "aws_key_pair" "zainab_key" {
-  key_name   = "zainab-key"
-  public_key = file("~/.ssh/zainab-key.pub")
+resource "aws_s3_bucket" "portfolio" {
+  bucket = "zainab-portfolio-2025"
 }
 
-# Groupe de sécurité (firewall)
-resource "aws_security_group" "portfolio_sg" {
-  name        = "portfolio-sg"
-  description = "Allow HTTP, HTTPS, SSH, Jenkins"
-
-  ingress {
-    from_port   = 22
-    to_port     = 22
-    protocol    = "tcp"
-    cidr_blocks = ["0.0.0.0/0"]
-  }
-  ingress {
-    from_port   = 80
-    to_port     = 80
-    protocol    = "tcp"
-    cidr_blocks = ["0.0.0.0/0"]
-  }
-  ingress {
-    from_port   = 8080
-    to_port     = 8080
-    protocol    = "tcp"
-    cidr_blocks = ["0.0.0.0/0"]
-  }
-  egress {
-    from_port   = 0
-    to_port     = 0
-    protocol    = "-1"
-    cidr_blocks = ["0.0.0.0/0"]
-  }
+resource "aws_s3_bucket_public_access_block" "portfolio" {
+  bucket                  = aws_s3_bucket.portfolio.id
+  block_public_acls       = false
+  block_public_policy     = false
+  ignore_public_acls      = false
+  restrict_public_buckets = false
 }
 
-# Instance EC2 (Free Tier)
-resource "aws_instance" "portfolio" {
-  ami                    = "ami-0c6ebbd55ab05f070"   # Ubuntu 22.04 Paris
-  instance_type          = "t3.micro"
-  key_name               = aws_key_pair.zainab_key.key_name
-  vpc_security_group_ids = [aws_security_group.portfolio_sg.id]
-
-  tags = {
-    Name = "zainab-portfolio"
-  }
+resource "aws_s3_bucket_policy" "portfolio" {
+  bucket = aws_s3_bucket.portfolio.id
+  policy = jsonencode({
+    Version = "2012-10-17"
+    Statement = [{
+      Sid       = "PublicRead"
+      Effect    = "Allow"
+      Principal = "*"
+      Action    = "s3:GetObject"
+      Resource  = "${aws_s3_bucket.portfolio.arn}/*"
+    }]
+  })
+  depends_on = [aws_s3_bucket_public_access_block.portfolio]
 }
 
-# Afficher l'IP publique après création
-output "public_ip" {
-  value = aws_instance.portfolio.public_ip
+resource "aws_s3_bucket_website_configuration" "portfolio" {
+  bucket = aws_s3_bucket.portfolio.id
+  index_document { suffix = "index.html" }
+  error_document  { key    = "index.html" }
+}
+
+resource "aws_cloudfront_distribution" "portfolio" {
+  enabled             = true
+  default_root_object = "index.html"
+
+  origin {
+    domain_name = aws_s3_bucket_website_configuration.portfolio.website_endpoint
+    origin_id   = "S3-portfolio"
+    custom_origin_config {
+      http_port              = 80
+      https_port             = 443
+      origin_protocol_policy = "http-only"
+      origin_ssl_protocols   = ["TLSv1.2"]
+    }
+  }
+
+  default_cache_behavior {
+    allowed_methods        = ["GET", "HEAD"]
+    cached_methods         = ["GET", "HEAD"]
+    target_origin_id       = "S3-portfolio"
+    viewer_protocol_policy = "redirect-to-https"
+    compress               = true
+    forwarded_values {
+      query_string = false
+      cookies { forward = "none" }
+    }
+    min_ttl     = 0
+    default_ttl = 3600
+    max_ttl     = 86400
+  }
+
+  restrictions {
+    geo_restriction { restriction_type = "none" }
+  }
+
+  viewer_certificate {
+    cloudfront_default_certificate = true
+  }
+
+  tags = { Name = "zainab-portfolio" }
+}
+
+output "cloudfront_url" {
+  value = "https://${aws_cloudfront_distribution.portfolio.domain_name}"
+}
+output "s3_bucket" {
+  value = aws_s3_bucket.portfolio.bucket
+}
+output "cloudfront_id" {
+  value = aws_cloudfront_distribution.portfolio.id
 }
