@@ -96,9 +96,9 @@ Mon-portfolio/
 
 ## Pipeline Stages
 
-```
-![Jenkins Pipeline Graph](images/pipeline.JPEG)
-```
+
+![Pipeline](images/pipeline.jpeg) 
+
 
 ---
 
